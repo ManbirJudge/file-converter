@@ -27,11 +27,11 @@
 							"src/assets"
 						],
 						"styles": [
-							"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-							"src/styles.css",
-							"./node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"./node_modules/bootstrap-icons/font/bootstrap-icons.css"
-						],
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ],
 						"scripts": [
 							"node_modules/bootstrap/dist/js/bootstrap.js",
 							"node_modules/jquery/dist/jquery.min.js"
@@ -81,36 +81,12 @@
 						}
 					},
 					"defaultConfiguration": "development"
-				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "file-converter:build"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "src/test.ts",
-						"polyfills": "src/polyfills.ts",
-						"tsConfig": "tsconfig.spec.json",
-						"karmaConfig": "karma.conf.js",
-						"assets": [
-							"src/favicon.ico",
-							"src/assets"
-						],
-						"styles": [
-							"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-							"src/styles.css"
-						],
-						"scripts": []
-					}
 				}
 			}
 		}
 	},
-  "defaultProject": "file-converter",
-  "cli": {
-    "analytics": "6c66bb53-bf8f-41ee-9671-d1b46cafbddb"
-  }
+	"defaultProject": "file-converter",
+	"cli": {
+		"analytics": "6c66bb53-bf8f-41ee-9671-d1b46cafbddb"
+	}
 }

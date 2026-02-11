@@ -1,27 +1,27 @@
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-import { ConvertRequest } from 'src/app/ConvertRequest';
-import { v4 as uuidv4 } from 'uuid';
+import { HttpClient, HttpEventType } from "@angular/common/http";
+import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import { finalize } from "rxjs/operators";
+import { ConvertRequest } from "src/app/ConvertRequest";
+import { v4 as uuidv4 } from "uuid";
 
-import { UploadedFile } from '../../UploadedFile';
-import { FileHandle } from '../../drapDrop.directive';
+import { UploadedFile } from "../../UploadedFile";
+import { FileHandle } from "../../drapDrop.directive";
 
 @Component({
-	selector: 'app-convert-to-base',
-	templateUrl: './convert-to-base.component.html',
-	styleUrls: ['./convert-to-base.component.css']
+	selector: "app-convert-to-base",
+	templateUrl: "./convert-to-base.component.html",
+	styleUrls: ["./convert-to-base.component.css"]
 })
 export class ConvertToBaseComponent implements OnInit {
 	@Input()
 	requiredFileType: string;
 
 	// required for uploading file
-	fileName = '';
+	fileName = "";
 	uploadProgress: number;
-	uploadSub: Subscription;
+	uploadSub: Subscription | null;
 
 	uploadedFilesList: UploadedFile[] = [];
 
@@ -58,7 +58,7 @@ export class ConvertToBaseComponent implements OnInit {
 
 		const upload$ = this.http.post(this.apiHost + "/api/upload-file", formData, {
 			reportProgress: true,
-			observe: 'events'
+			observe: "events"
 		})
 			.pipe(
 				finalize(() => this.reset())
@@ -66,7 +66,7 @@ export class ConvertToBaseComponent implements OnInit {
 
 		this.uploadSub = upload$.subscribe(event => {
 			if (event.type == HttpEventType.UploadProgress) {
-				this.uploadProgress = Math.round(100 * (event.loaded / event.total));
+				this.uploadProgress = Math.round(100 * (event.loaded / (event.total ?? 1)));
 			};
 			if (event.type == HttpEventType.Response) {
 				const body = event.body as UploadedFile;
@@ -78,6 +78,7 @@ export class ConvertToBaseComponent implements OnInit {
 
 	onFileSelected(event: Event) {
 		const element = event.currentTarget as HTMLInputElement;
+		if (element.files === null) return;
 		const file: File = element.files[0];
 
 		if (file) {
@@ -90,7 +91,7 @@ export class ConvertToBaseComponent implements OnInit {
 				formData.append("convert_to", this.convertToType);
 
 				const upload$ = this.http.post(this.apiHost + "/api/convert-requests", formData, {
-					observe: 'events'
+					observe: "events"
 				});
 
 				upload$.subscribe(event => {
@@ -117,7 +118,7 @@ export class ConvertToBaseComponent implements OnInit {
 		formData.append("convert_to", this.convertRequest.convert_to);
 
 		const upload$ = this.http.put(this.apiHost + "/api/convert-requests/" + this.convertRequest.id, formData, {
-			observe: 'events'
+			observe: "events"
 		});
 
 		upload$.subscribe(event => {
@@ -126,7 +127,7 @@ export class ConvertToBaseComponent implements OnInit {
 					queryParams: {
 						req_id: this.convertRequest.id
 					},
-					queryParamsHandling: 'merge',
+					queryParamsHandling: "merge",
 					// skipLocationChange: true
 				});
 			};
@@ -134,12 +135,12 @@ export class ConvertToBaseComponent implements OnInit {
 	}
 
 	cancelUpload() {
-		this.uploadSub.unsubscribe();
+		this.uploadSub?.unsubscribe();
 		this.reset();
 	};
 
 	reset() {
-		this.uploadProgress = null;
+		this.uploadProgress = 0;
 		this.uploadSub = null;
 	};
 
@@ -158,7 +159,7 @@ export class ConvertToBaseComponent implements OnInit {
 					formData.append("convert_to", this.convertToType);
 
 					const upload$ = this.http.post(this.apiHost + "/api/convert-requests", formData, {
-						observe: 'events'
+						observe: "events"
 					});
 
 					upload$.subscribe(event => {

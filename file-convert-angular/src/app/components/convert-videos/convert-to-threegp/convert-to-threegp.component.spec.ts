@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToThreegpComponent } from './convert-to-threegp.component';
+import { ConvertToThreegpComponent } from "./convert-to-threegp.component";
 
-describe('ConvertToThreegpComponent', () => {
+describe("ConvertToThreegpComponent", () => {
   let component: ConvertToThreegpComponent;
   let fixture: ComponentFixture<ConvertToThreegpComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToThreegpComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

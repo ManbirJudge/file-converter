@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToThreeg2Component } from './convert-to-threeg2.component';
+import { ConvertToThreeg2Component } from "./convert-to-threeg2.component";
 
-describe('ConvertToThreeg2Component', () => {
+describe("ConvertToThreeg2Component", () => {
   let component: ConvertToThreeg2Component;
   let fixture: ComponentFixture<ConvertToThreeg2Component>;
 
@@ -19,7 +19,7 @@ describe('ConvertToThreeg2Component', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

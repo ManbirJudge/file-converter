@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToAviComponent } from './convert-to-avi.component';
+import { ConvertToAviComponent } from "./convert-to-avi.component";
 
-describe('ConvertToAviComponent', () => {
+describe("ConvertToAviComponent", () => {
   let component: ConvertToAviComponent;
   let fixture: ComponentFixture<ConvertToAviComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToAviComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

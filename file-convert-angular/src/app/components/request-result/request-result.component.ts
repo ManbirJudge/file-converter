@@ -1,17 +1,17 @@
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { interval, Subscription } from 'rxjs';
-import { ConvertRequest } from 'src/app/ConvertRequest';
-import { DownloadService } from 'src/app/FileDownlaodService';
-import { saveAs } from 'file-saver';
+import { HttpClient, HttpEventType } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { interval, Subscription } from "rxjs";
+import { ConvertRequest } from "src/app/ConvertRequest";
+import { DownloadService } from "src/app/FileDownlaodService";
+import { saveAs } from "file-saver";
 
-import { UploadedFile } from '../../UploadedFile';
+import { UploadedFile } from "../../UploadedFile";
 
 @Component({
-	selector: 'app-request-result',
-	templateUrl: './request-result.component.html',
-	styleUrls: ['./request-result.component.css']
+	selector: "app-request-result",
+	templateUrl: "./request-result.component.html",
+	styleUrls: ["./request-result.component.css"]
 })
 export class RequestResultComponent implements OnInit {
 	reqFiles: UploadedFile[];
@@ -23,10 +23,10 @@ export class RequestResultComponent implements OnInit {
 
 	constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private downloads: DownloadService) {
 		this.activatedRoute.queryParams.subscribe(params => {
-			let reqID = params['req_id'];
+			let reqID = params["req_id"];
 
 			const get$ = this.http.get(this.apiHost + "/api/convert-requests/" + reqID, {
-				observe: 'events'
+				observe: "events"
 			});
 
 			get$.subscribe(event => {
@@ -44,7 +44,7 @@ export class RequestResultComponent implements OnInit {
 
 	getRequest() {
 		const get$ = this.http.get(this.apiHost + "/api/convert-requests/" + this.req.id, {
-			observe: 'events'
+			observe: "events"
 		});
 
 		get$.subscribe(event => {
@@ -66,7 +66,7 @@ export class RequestResultComponent implements OnInit {
 
 	loadFiles() {
 		const upload$ = this.http.get(this.apiHost + "/api/convert-requests/" + this.req.id + "/result-files", {
-			observe: 'events'
+			observe: "events"
 		});
 
 		upload$.subscribe(event => {
@@ -80,7 +80,7 @@ export class RequestResultComponent implements OnInit {
 		this.downloads
 			.download(this.apiHost + this.reqFiles[index].file)
 			.subscribe(blob => {
-				saveAs(blob, this.reqFiles[index].file.split('/')[2]);
+				saveAs(blob, this.reqFiles[index].file.split("/")[2]);
 			});
 	};
 };

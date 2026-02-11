@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToAiffComponent } from './convert-to-aiff.component';
+import { ConvertToAiffComponent } from "./convert-to-aiff.component";
 
-describe('ConvertToAiffComponent', () => {
+describe("ConvertToAiffComponent", () => {
   let component: ConvertToAiffComponent;
   let fixture: ComponentFixture<ConvertToAiffComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToAiffComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToMpgComponent } from './convert-to-mpg.component';
+import { ConvertToMpgComponent } from "./convert-to-mpg.component";
 
-describe('ConvertToMpgComponent', () => {
+describe("ConvertToMpgComponent", () => {
   let component: ConvertToMpgComponent;
   let fixture: ComponentFixture<ConvertToMpgComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToMpgComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

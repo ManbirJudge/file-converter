@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToWavComponent } from './convert-to-wav.component';
+import { ConvertToWavComponent } from "./convert-to-wav.component";
 
-describe('ConvertToWavComponent', () => {
+describe("ConvertToWavComponent", () => {
   let component: ConvertToWavComponent;
   let fixture: ComponentFixture<ConvertToWavComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToWavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -9,6 +9,7 @@ class FileSerializer(ModelSerializer):
 
 
 class ConvertRequestSerializer(ModelSerializer):
+    files = FileSerializer(many=True, read_only=True)
     class Meta:
         model = ConvertRequest
         fields = '__all__'

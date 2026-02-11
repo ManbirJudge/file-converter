@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <style>
+        @keyframes snake-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .animate-snake {
+            animation: snake-rotate 2s linear infinite;
+        }    
+    </style>
+    <h2 class="text-2xl font-bold mb-2">Convert Images</h2>
+    <p class="mb-2">Convert to <select id="target-fmt-select" class="p-1 bg-slate-800 rounded-0 hover:bg-slate-700 w-24">
+        <option value="png">PNG</option>
+        <option value="jpeg">JPEG</option>
+        <option value="gif">GIF</option>
+        <option value="ico">ICO</option>
+        <option value="webp">WebP</option>
+        <option value="tiff">TIFF</option>
+        <option value="qoif">QOIF</option>
+    </select></p>
+    <label id="add-files-btn" for="files-in" class="p-1 bg-slate-800 rounded-0 hover:bg-slate-700 w-24 text-center cursor-pointer mb-2">Add Files</label>
+    <input id="files-in" type="file" class="hidden" multiple accept="image/*"/>
+    <ul id="files-list" class="mb-1"></ul>
+    <button id="convert-btn" class="relative bg-slate-800 rounded-0 w-24 p-[2px] overflow-hidden">
+        <span class="loader hidden animate-snake absolute inset-[-200%] bg-[conic-gradient(transparent_80%,#ffffff_95%,#ffffff_100%)] pointer-events-none"></span>
+        <span class="relative block bg-slate-800 hover:bg-slate-700 w-full p-1 text-center">Convert</span>
+    </button>
+
+    {% csrf_token %}
+    <script>
+        let loading = false;
+
+        function genHash(f) {
+            return `${f.name}${f.size}${f.lastModified}`.split('').reduce((a, b) => {
+                a = ((a << 5) - a) + b.charCodeAt(0);
+                return a & a;
+            }, 0);
+        }
+
+        const targetFmtSelect = document.getElementById("target-fmt-select");
+        const filesIn = document.getElementById("files-in");
+        const filesList = document.getElementById("files-list");
+        const convertBtn = document.getElementById("convert-btn");
+
+        const files = new Map();
+
+        function uiUpdateFilesList() {
+            filesList.innerHTML = "";
+            for (const f of files.values()) {
+                const fHash = genHash(f);
+                filesList.innerHTML += `<li id="file-list-item-${fHash}" class="p-1 bg-slate-700 mb-1 flex flex-row justify-between max-w-lg"><span class="ms-1">${f.name}</span><button class="ms-auto p-1 bg-red-800 rounded-0 hover:bg-red-900 text-sm w-20" data-file-hash="${fHash}">Remove</button></li>`;
+            }
+        }
+        
+        filesIn.addEventListener("change", evt => {
+            for (const f of filesIn.files)
+                files.set(genHash(f), f);
+            uiUpdateFilesList();
+        });
+
+        filesList.addEventListener("click", evt => {
+            const fHash = parseInt(evt.target.getAttribute("data-file-hash"));
+            if (files.has(fHash)) files.delete(fHash);
+            document.getElementById(`file-list-item-${fHash}`).remove();
+        });
+
+        convertBtn.addEventListener("click", evt => {
+            if (loading) return;
+            if (files.size == 0) return;
+
+            loading = true;
+            targetFmtSelect.disabled = true;
+            filesIn.disabled = true;
+            convertBtn.disabled = true;
+            convertBtn.querySelector(".loader").classList.toggle("hidden", !loading);
+
+            const data = new FormData();
+            
+            data.set("csrfmiddlewaretoken", document.querySelector("[name=csrfmiddlewaretoken]").value);
+            data.set("target-fmt", targetFmtSelect.value);
+            for (const f of files.values()) {
+                data.append('files[]', f, f.name);
+            }
+
+            fetch("/api/convert-request/new/", {
+                method: 'POST',
+                body: data
+            }).then(resp => {
+                if (!resp.ok)
+                    throw new Error(JSON.stringify(resp)); 
+                return resp.json();
+            }).then(json => {
+                location.replace(`/convert-request/${json.data.conv_req_id}/`);
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+                loading = false;
+                targetFmtSelect.disabled = false;
+                filesIn.disabled = false;
+                convertBtn.disabled = false;
+                convertBtn.querySelector(".loader").classList.toggle("hidden", !loading);
+            });
+        });
+    </script>
+{% endblock body %}

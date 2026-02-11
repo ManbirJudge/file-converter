@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToOggComponent } from './convert-to-ogg.component';
+import { ConvertToOggComponent } from "./convert-to-ogg.component";
 
-describe('ConvertToOggComponent', () => {
+describe("ConvertToOggComponent", () => {
   let component: ConvertToOggComponent;
   let fixture: ComponentFixture<ConvertToOggComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToOggComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

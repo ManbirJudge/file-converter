@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToWmvComponent } from './convert-to-wmv.component';
+import { ConvertToWmvComponent } from "./convert-to-wmv.component";
 
-describe('ConvertToWmvComponent', () => {
+describe("ConvertToWmvComponent", () => {
   let component: ConvertToWmvComponent;
   let fixture: ComponentFixture<ConvertToWmvComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToWmvComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

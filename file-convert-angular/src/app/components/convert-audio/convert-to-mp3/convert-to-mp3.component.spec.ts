@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToMp3Component } from './convert-to-mp3.component';
+import { ConvertToMp3Component } from "./convert-to-mp3.component";
 
-describe('ConvertToMp3Component', () => {
+describe("ConvertToMp3Component", () => {
   let component: ConvertToMp3Component;
   let fixture: ComponentFixture<ConvertToMp3Component>;
 
@@ -19,7 +19,7 @@ describe('ConvertToMp3Component', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

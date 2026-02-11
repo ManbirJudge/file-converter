@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToFlvComponent } from './convert-to-flv.component';
+import { ConvertToFlvComponent } from "./convert-to-flv.component";
 
-describe('ConvertToFlvComponent', () => {
+describe("ConvertToFlvComponent", () => {
   let component: ConvertToFlvComponent;
   let fixture: ComponentFixture<ConvertToFlvComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToFlvComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

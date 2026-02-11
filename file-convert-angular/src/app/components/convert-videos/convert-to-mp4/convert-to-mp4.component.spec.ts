@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToMp4Component } from './convert-to-mp4.component';
+import { ConvertToMp4Component } from "./convert-to-mp4.component";
 
-describe('ConvertToMp4Component', () => {
+describe("ConvertToMp4Component", () => {
   let component: ConvertToMp4Component;
   let fixture: ComponentFixture<ConvertToMp4Component>;
 
@@ -19,7 +19,7 @@ describe('ConvertToMp4Component', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

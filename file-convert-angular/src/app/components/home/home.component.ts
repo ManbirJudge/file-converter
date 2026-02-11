@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-	selector: 'app-home-component',
-	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.css']
+	selector: "app-home-component",
+	templateUrl: "./home.component.html",
+	styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
 	selectedImgFormat: string = "default";

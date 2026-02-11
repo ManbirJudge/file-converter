@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToTiffComponent } from './convert-to-tiff.component';
+import { ConvertToTiffComponent } from "./convert-to-tiff.component";
 
-describe('ConvertToTiffComponent', () => {
+describe("ConvertToTiffComponent", () => {
   let component: ConvertToTiffComponent;
   let fixture: ComponentFixture<ConvertToTiffComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToTiffComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

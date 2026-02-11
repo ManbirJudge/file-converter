@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToAacComponent } from './convert-to-aac.component';
+import { ConvertToAacComponent } from "./convert-to-aac.component";
 
-describe('ConvertToAacComponent', () => {
+describe("ConvertToAacComponent", () => {
   let component: ConvertToAacComponent;
   let fixture: ComponentFixture<ConvertToAacComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToAacComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

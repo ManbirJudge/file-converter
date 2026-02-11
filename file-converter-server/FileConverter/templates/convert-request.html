@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {{ conv_req|json_script:"conv_req_json" }}
+    <ul id="files-list" class="mb-2 ps-4 list-disc"></ul>
+    <button id="convert-btn" class="relative bg-slate-800 rounded-0 w-[8rem] p-[2px] overflow-hidden">
+        <span class="loader hidden animate-snake absolute inset-[-200%] bg-[conic-gradient(transparent_80%,#ffffff_95%,#ffffff_100%)] pointer-events-none"></span>
+        <span class="relative block bg-slate-800 hover:bg-slate-700 w-full p-1 text-center">Download All</span>
+    </button>
+    <script>
+        let loading = true;
+        let conv_req = JSON.parse(document.getElementById("conv_req_json").textContent);
+
+        const filesList = document.getElementById("files-list");
+        
+        function load() {
+            fetch(`/api/convert-request/${conv_req.id}/`).then(resp => {
+                if (!resp.ok)
+                    throw new Error(JSON.stringify(resp));
+                return resp.json();
+            }).then(json => {
+                if (json.data.conv_req.status === "C") {
+                    for (const f of json.data.conv_req.files) {
+                        if (f.use === 'R')
+                            filesList.innerHTML += `<li><a href="${f.file}">${f.name}</a></li>`;
+                    }
+                    loading = false;
+                }
+            }).catch(err => {
+                console.log(err);
+                loading = false;
+            }).finally(() => {
+                if (loading)
+                    setTimeout(load, 3000);
+            });
+        }
+
+        if (conv_req['err'] === undefined) {
+            if (conv_req.status === "C") {
+                for (const f of conv_req.files) {
+                    if (f.use === 'R')
+                        filesList.innerHTML += `<li><a href="${f.file}">${f.name}</a></li>`;
+                }
+                loading = false;
+            } else load();
+        }
+    </script>
+{% endblock body %}

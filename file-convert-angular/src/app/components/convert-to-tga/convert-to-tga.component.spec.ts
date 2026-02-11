@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToTgaComponent } from './convert-to-tga.component';
+import { ConvertToTgaComponent } from "./convert-to-tga.component";
 
-describe('ConvertToTgaComponent', () => {
+describe("ConvertToTgaComponent", () => {
   let component: ConvertToTgaComponent;
   let fixture: ComponentFixture<ConvertToTgaComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToTgaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

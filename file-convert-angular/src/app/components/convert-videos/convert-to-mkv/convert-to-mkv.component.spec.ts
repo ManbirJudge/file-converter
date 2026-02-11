@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToMkvComponent } from './convert-to-mkv.component';
+import { ConvertToMkvComponent } from "./convert-to-mkv.component";
 
-describe('ConvertToMkvComponent', () => {
+describe("ConvertToMkvComponent", () => {
   let component: ConvertToMkvComponent;
   let fixture: ComponentFixture<ConvertToMkvComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToMkvComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

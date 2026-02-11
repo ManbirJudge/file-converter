@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToJpegComponent } from './convert-to-jpeg.component';
+import { ConvertToJpegComponent } from "./convert-to-jpeg.component";
 
-describe('ConvertToJpegComponent', () => {
+describe("ConvertToJpegComponent", () => {
   let component: ConvertToJpegComponent;
   let fixture: ComponentFixture<ConvertToJpegComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToJpegComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

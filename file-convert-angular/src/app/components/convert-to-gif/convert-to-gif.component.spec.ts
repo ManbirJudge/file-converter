@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToGifComponent } from './convert-to-gif.component';
+import { ConvertToGifComponent } from "./convert-to-gif.component";
 
-describe('ConvertToGifComponent', () => {
+describe("ConvertToGifComponent", () => {
   let component: ConvertToGifComponent;
   let fixture: ComponentFixture<ConvertToGifComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToGifComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

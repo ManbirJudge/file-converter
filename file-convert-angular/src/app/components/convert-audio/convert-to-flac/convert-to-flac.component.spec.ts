@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToFlacComponent } from './convert-to-flac.component';
+import { ConvertToFlacComponent } from "./convert-to-flac.component";
 
-describe('ConvertToFlacComponent', () => {
+describe("ConvertToFlacComponent", () => {
   let component: ConvertToFlacComponent;
   let fixture: ComponentFixture<ConvertToFlacComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToFlacComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

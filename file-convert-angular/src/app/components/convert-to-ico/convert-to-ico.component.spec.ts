@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToIcoComponent } from './convert-to-ico.component';
+import { ConvertToIcoComponent } from "./convert-to-ico.component";
 
-describe('ConvertToIcoComponent', () => {
+describe("ConvertToIcoComponent", () => {
   let component: ConvertToIcoComponent;
   let fixture: ComponentFixture<ConvertToIcoComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToIcoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

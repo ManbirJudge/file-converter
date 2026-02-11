@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToWebpComponent } from './convert-to-webp.component';
+import { ConvertToWebpComponent } from "./convert-to-webp.component";
 
-describe('ConvertToWebpComponent', () => {
+describe("ConvertToWebpComponent", () => {
   let component: ConvertToWebpComponent;
   let fixture: ComponentFixture<ConvertToWebpComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToWebpComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

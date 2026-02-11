@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToBmpComponent } from './convert-to-bmp.component';
+import { ConvertToBmpComponent } from "./convert-to-bmp.component";
 
-describe('ConvertToBmpComponent', () => {
+describe("ConvertToBmpComponent", () => {
   let component: ConvertToBmpComponent;
   let fixture: ComponentFixture<ConvertToBmpComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToBmpComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

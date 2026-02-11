@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ConvertToBaseComponent } from '../convert-to-base/convert-to-base.component';
+import { Component } from "@angular/core";
+import { ConvertToBaseComponent } from "../convert-to-base/convert-to-base.component";
 
 class ConvertRequest {
 	id: number;
@@ -10,9 +10,9 @@ class ConvertRequest {
 }
 
 @Component({
-	selector: 'app-conver-to-png',
-	templateUrl: './convert-to-png.component.html',
-	styleUrls: ['./convert-to-png.component.css']
+	selector: "app-conver-to-png",
+	templateUrl: "./convert-to-png.component.html",
+	styleUrls: ["./convert-to-png.component.css"]
 })
 export class ConvertToPngComponent extends ConvertToBaseComponent {
 	convertToType: string = "png";

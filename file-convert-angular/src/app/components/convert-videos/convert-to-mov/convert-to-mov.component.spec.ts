@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToMovComponent } from './convert-to-mov.component';
+import { ConvertToMovComponent } from "./convert-to-mov.component";
 
-describe('ConvertToMovComponent', () => {
+describe("ConvertToMovComponent", () => {
   let component: ConvertToMovComponent;
   let fixture: ComponentFixture<ConvertToMovComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToMovComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

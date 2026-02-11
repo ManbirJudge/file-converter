@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToOpusComponent } from './convert-to-opus.component';
+import { ConvertToOpusComponent } from "./convert-to-opus.component";
 
-describe('ConvertToOpusComponent', () => {
+describe("ConvertToOpusComponent", () => {
   let component: ConvertToOpusComponent;
   let fixture: ComponentFixture<ConvertToOpusComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToOpusComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

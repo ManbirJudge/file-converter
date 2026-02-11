@@ -9,11 +9,9 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
-    'home',
+    'website',
     'api',
-
-    'rest_framework',
-
+    'huey.contrib.djhuey',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -23,8 +21,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -39,7 +35,9 @@ ROOT_URLCONF = 'FileConverter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            Path.joinpath(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,14 +87,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Added by Me
+STATIC_URL = '/static/'
+
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+HUEY = {
+    'huey_class': 'huey.SqliteHuey',
+    'name': 'idk.db',
+    'filename': 'huey.db',
+    'results': True,
+    'store_none': False,
+    'immediate': True,  # shoulde be False. TODO: proper logging for tasks
+    'utc': True,
+}

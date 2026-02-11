@@ -1,14 +1,8 @@
 from django.urls import path
 
-from .views import FileGenericAPIView, upload_file, ConvertRequestGenericAPIView
+from .views import new_conv_req_view, conv_req_view
 
 urlpatterns = [
-    path('files', FileGenericAPIView.as_view()),
-    path('files/<str:pk>', FileGenericAPIView.as_view()),
-
-    path('upload-file', upload_file),
-
-    path('convert-requests', ConvertRequestGenericAPIView.as_view()),
-    path('convert-requests/<str:pk>', ConvertRequestGenericAPIView.as_view()),
-    path('convert-requests/<str:req_pk>/result-files', FileGenericAPIView.as_view()),
+    path('convert-request/new/', new_conv_req_view, name='new-conv-req'),
+    path('convert-request/<int:conv_req_id>/', conv_req_view, name='conv-req')
 ]

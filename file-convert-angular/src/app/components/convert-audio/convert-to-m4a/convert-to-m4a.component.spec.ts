@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToM4aComponent } from './convert-to-m4a.component';
+import { ConvertToM4aComponent } from "./convert-to-m4a.component";
 
-describe('ConvertToM4aComponent', () => {
+describe("ConvertToM4aComponent", () => {
   let component: ConvertToM4aComponent;
   let fixture: ComponentFixture<ConvertToM4aComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToM4aComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

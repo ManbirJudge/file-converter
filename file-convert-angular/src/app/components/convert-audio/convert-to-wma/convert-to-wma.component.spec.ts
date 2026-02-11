@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConvertToWmaComponent } from './convert-to-wma.component';
+import { ConvertToWmaComponent } from "./convert-to-wma.component";
 
-describe('ConvertToWmaComponent', () => {
+describe("ConvertToWmaComponent", () => {
   let component: ConvertToWmaComponent;
   let fixture: ComponentFixture<ConvertToWmaComponent>;
 
@@ -19,7 +19,7 @@ describe('ConvertToWmaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
