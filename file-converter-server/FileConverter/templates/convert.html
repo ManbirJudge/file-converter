@@ -11,7 +11,7 @@
         }    
     </style>
     <h2 class="text-2xl font-bold mb-2">Convert Images</h2>
-    <p class="mb-2">Convert to <select id="target-fmt-select" class="p-1 bg-slate-800 rounded-0 hover:bg-slate-700 w-24">
+    <p class="mb-2">Convert to <select id="target-fmt-select" class="p-1 bg-slate-800 rounded-0 hover:bg-slate-700 w-[8rem]">
         <option value="png">PNG</option>
         <option value="jpeg">JPEG</option>
         <option value="gif">GIF</option>
@@ -20,18 +20,30 @@
         <option value="tiff">TIFF</option>
         <option value="qoif">QOIF</option>
     </select></p>
-    <label id="add-files-btn" for="files-in" class="p-1 bg-slate-800 rounded-0 hover:bg-slate-700 w-24 text-center cursor-pointer mb-2">Add Files</label>
+    <label id="add-files-btn" for="files-in" class="p-1 bg-slate-800 rounded-0 hover:bg-slate-700 w-[8rem] text-center cursor-pointer mb-2">Add Files</label>
     <input id="files-in" type="file" class="hidden" multiple accept="image/*"/>
-    <ul id="files-list" class="mb-1"></ul>
-    <button id="convert-btn" class="relative bg-slate-800 rounded-0 w-24 p-[2px] overflow-hidden">
+    <ul id="files-list" class="mb-1 hidden"></ul>
+    <div id="drop-area" class="max-w-lg h-[14rem] bg-slate-800 mb-2 outline-dashed outline-2 outline-gray-200 -outline-offset-[0.5rem] flex items-center justify-center">
+        <p class="text-center">Drop files here ...</p>                
+    </div>
+    <button id="convert-btn" class="relative bg-slate-800 rounded-0 w-[8rem] p-[2px] overflow-hidden">
         <span class="loader hidden animate-snake absolute inset-[-200%] bg-[conic-gradient(transparent_80%,#ffffff_95%,#ffffff_100%)] pointer-events-none"></span>
         <span class="relative block bg-slate-800 hover:bg-slate-700 w-full p-1 text-center">Convert</span>
     </button>
 
     {% csrf_token %}
-    <script>
+    <script>        
+        // state
         let loading = false;
+        const files = new Map();
+     
+        const targetFmtSelect = document.getElementById("target-fmt-select");
+        const filesIn = document.getElementById("files-in");
+        const dropArea = document.getElementById("drop-area");
+        const filesList = document.getElementById("files-list");
+        const convertBtn = document.getElementById("convert-btn");
 
+        // ui functions
         function genHash(f) {
             return `${f.name}${f.size}${f.lastModified}`.split('').reduce((a, b) => {
                 a = ((a << 5) - a) + b.charCodeAt(0);
@@ -39,31 +51,38 @@
             }, 0);
         }
 
-        const targetFmtSelect = document.getElementById("target-fmt-select");
-        const filesIn = document.getElementById("files-in");
-        const filesList = document.getElementById("files-list");
-        const convertBtn = document.getElementById("convert-btn");
-
-        const files = new Map();
+        function addFiles(newFiles) {
+            for (const f of newFiles)
+                files.set(genHash(f), f);
+        }
 
         function uiUpdateFilesList() {
-            filesList.innerHTML = "";
-            for (const f of files.values()) {
-                const fHash = genHash(f);
-                filesList.innerHTML += `<li id="file-list-item-${fHash}" class="p-1 bg-slate-700 mb-1 flex flex-row justify-between max-w-lg"><span class="ms-1">${f.name}</span><button class="ms-auto p-1 bg-red-800 rounded-0 hover:bg-red-900 text-sm w-20" data-file-hash="${fHash}">Remove</button></li>`;
+            filesList.innerHTML = "" 
+            if (files.size === 0) {
+                dropArea.classList.remove("hidden");
+                filesList.classList.add("hidden");
+            } else { 
+                dropArea.classList.add("hidden");
+                filesList.classList.remove("hidden");
+                for (const f of files.values()) {
+                    const fHash = genHash(f);
+                    filesList.innerHTML += `<li id="file-list-item-${fHash}" class="p-1 bg-slate-700 mb-1 flex flex-row justify-between max-w-lg"><span class="ms-1">${f.name}</span><button class="ms-auto p-1 bg-red-800 rounded-0 hover:bg-red-900 text-sm w-20" data-file-hash="${fHash}">Remove</button></li>`;
+                }
             }
         }
         
+        // event listeners
         filesIn.addEventListener("change", evt => {
-            for (const f of filesIn.files)
-                files.set(genHash(f), f);
+            addFiles(filesIn.files);
             uiUpdateFilesList();
         });
 
         filesList.addEventListener("click", evt => {
+            // we aren't using the uiUpdateFilesList function by default becuase its very inefficient
             const fHash = parseInt(evt.target.getAttribute("data-file-hash"));
             if (files.has(fHash)) files.delete(fHash);
             document.getElementById(`file-list-item-${fHash}`).remove();
+            if (files.size === 0) uiUpdateFilesList();
         });
 
         convertBtn.addEventListener("click", evt => {
@@ -74,6 +93,7 @@
             targetFmtSelect.disabled = true;
             filesIn.disabled = true;
             convertBtn.disabled = true;
+            convertBtn.querySelector(".block").textContent = "Uploading ...";
             convertBtn.querySelector(".loader").classList.toggle("hidden", !loading);
 
             const data = new FormData();
@@ -92,7 +112,7 @@
                     throw new Error(JSON.stringify(resp)); 
                 return resp.json();
             }).then(json => {
-                location.replace(`/convert-request/${json.data.conv_req_id}/`);
+                window.location.assign(`/convert-request/${json.data.conv_req_id}/`);
             }).catch(err => {
                 console.log(err);
             }).finally(() => {
@@ -100,8 +120,29 @@
                 targetFmtSelect.disabled = false;
                 filesIn.disabled = false;
                 convertBtn.disabled = false;
+                convertBtn.querySelect(".block").textContent = "Convert";
                 convertBtn.querySelector(".loader").classList.toggle("hidden", !loading);
             });
+        });
+
+        // drop area
+        dropArea.addEventListener("dragover", evt => {
+            evt.preventDefault();
+            dropArea.classList.add("bg-slate-700");
+        });
+
+        dropArea.addEventListener("dragleave", evt => {
+            evt.preventDefault();
+            dropArea.classList.remove("bg-slate-700");
+        });
+
+        dropArea.addEventListener("drop", evt => {
+            evt.preventDefault();
+
+            dropArea.classList.remove("bg-slate-700");
+            
+            addFiles(evt.dataTransfer.files);
+            uiUpdateFilesList();
         });
     </script>
 {% endblock body %}

@@ -104,6 +104,6 @@ HUEY = {
     'filename': 'huey.db',
     'results': True,
     'store_none': False,
-    'immediate': True,  # shoulde be False. TODO: proper logging for tasks
+    'immediate': False,  # shoulde be False. TODO: proper logging for tasks
     'utc': True,
 }
