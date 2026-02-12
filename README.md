@@ -30,3 +30,4 @@ python manage.py run_huey
 - ~~Don't use Tailwind CDN.~~
 - Favicon.
 - ~~Serve font, tailwind and jszip using DJango static.~~
+- Optimize for mobile.
