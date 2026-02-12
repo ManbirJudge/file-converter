@@ -1,0 +1,10 @@
+{
+    "name": "FileConverter",
+    "version": "0.0.0",
+    "description": "",
+    "scripts": {},
+    "type": "commonjs",
+    "devDependencies": {
+        "tailwindcss": "^3.4.19"
+    }
+}

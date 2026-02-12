@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
-
-{% block body %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+{% load static %}
+{% block head %}
+    <script src="{% static 'js/jszip.min.js' %}"></script>
     <style>
         @keyframes snake-rotate {
             0% { transform: rotate(0deg); }
@@ -12,6 +12,8 @@
         }    
     </style>
     {{ conv_req|json_script:"conv_req_json" }}
+{% endblock head %}
+{% block body %}
     <ul id="files-list" class="mb-2"></ul>
     <button id="download-all-btn" class="relative bg-slate-800 rounded-0 w-[8rem] p-[2px] overflow-hidden" disabled>
         <span class="loader animate-snake absolute inset-[-200%] bg-[conic-gradient(transparent_80%,#ffffff_95%,#ffffff_100%)] pointer-events-none"></span>
@@ -56,6 +58,10 @@
         }
 
         downloadAllBtn.addEventListener("click", async (evt) => {
+            downloadAllBtn.disabled = true;
+            downloadAllBtn.querySelector(".loader").classList.remove("hidden");
+            downloadAllBtn.querySelector(".relative").textContent = "Downloading ...";
+
             // generating zip
             const zip = new JSZip();
             const folder = zip.folder("converted-files");
@@ -82,6 +88,11 @@
 
             document.body.removeChild(link);
             URL.revokeObjectURL(link.href);
+
+            // ---
+            downloadAllBtn.disabled = false;
+            downloadAllBtn.querySelector(".loader").classList.add("hidden");
+            downloadAllBtn.querySelector(".relative").textContent = "Download All";
         });
 
         if (conv_req["err"] === undefined) {

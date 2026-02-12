@@ -18,7 +18,7 @@ def new_conv_req_view(req):
         }, status_code=400)
 
     conv_req = ConvertRequest.objects.create(
-        type='IMG',
+        type=req.POST.get('type'),
         target_fmt=req.POST.get('target-fmt')
     )
 

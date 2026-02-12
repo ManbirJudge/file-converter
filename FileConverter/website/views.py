@@ -8,7 +8,22 @@ def home_view(req):
     return render(req, 'index.html')
 
 def convert_imgs_view(req):
-    return render(req, 'convert.html')
+    return render(req, 'convert.html', {
+        'converter': {
+            'title': 'Convert Images',
+            'fmts': ['PNG', 'JPEG', 'WebP', 'BMP', 'GIF', 'TIFF', 'QOIF'],
+            'accepted_mimetypes': ','.join([
+                'image/png',
+                'image/jpeg',
+                'image/webp',
+                'image/bmp',
+                'image/gif',
+                'image/tiff',
+                'image/qoi'
+            ]),
+            'type': 'IMG'
+        }
+    })
 
 def convert_req_view(req, conv_req_id):
     conv_req = ConvertRequest.objects.filter(pk=conv_req_id).first()
